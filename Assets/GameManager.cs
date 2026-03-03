@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static int PlayerScore1 = 0;
+    public static int Player1Lifes = 1;
+    public static int Balls = 1;
 
     public GUISkin layout;
 
     GameObject theBall;
     GameObject P1;
-    GameObject P2;
 
     GUIStyle infoStyle;
 
@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     {
         theBall = GameObject.FindGameObjectWithTag("Ball");
         P1 = GameObject.FindGameObjectWithTag("Player");
-        P2 = GameObject.FindGameObjectWithTag("Player2");
 
         // Estilo das informações das fases
         infoStyle = new GUIStyle();
@@ -90,17 +89,13 @@ public class GameManager : MonoBehaviour
 
     void RestartMatch()
     {
-        PlayerScore1 = 0;
-        PlayerScore2 = 0;
-
+        Player1Lifes = 1;   
+        Balls = 1;
         if (theBall != null)
             theBall.SendMessage("RestartGame", null, SendMessageOptions.RequireReceiver);
 
         if (P1 != null)
             P1.SendMessage("RestartGame", null, SendMessageOptions.RequireReceiver);
-
-        if (P2 != null)
-            P2.SendMessage("RestartGame", null, SendMessageOptions.RequireReceiver);
     }
 
     void Update()
@@ -110,9 +105,11 @@ public class GameManager : MonoBehaviour
 
         if (scene.name == "Fase1" || scene.name == "Fase2" || scene.name == "Fase3")
         {
+            print("Vidas do jogador: " + Player1Lifes);
             GameObject[] gos = GameObject.FindGameObjectsWithTag("Brick");
-            print(gos.Length);
-
+            if(Player1Lifes < 1){
+                EndGame();
+            }
             if (gos.Length == 0)
             {
                 if (scene.name == "Fase1")
@@ -133,20 +130,16 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
-        PlayerScore1 = 0;
-
-        SceneManager.LoadScene("SampleS"); // volta para o menu
+        Player1Lifes = 1;
+        Balls = 1;
+        SceneManager.LoadScene("SampleScene"); // volta para o menu
     }
 
     public static void Score(string wallID)
     {
-        if (wallID == "TopWall")
+        if (wallID == "BottomWall")
         {
-            PlayerScore1++;
-        }
-        else if (wallID == "BottomWall")
-        {
-            PlayerScore2++;
+            Player1Lifes--;
         }
     }
 }
