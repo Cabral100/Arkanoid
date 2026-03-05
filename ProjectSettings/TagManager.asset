@@ -9,6 +9,8 @@ TagManager:
   - TopWall
   - BottomWall
   - Brick
+  - MultiBallBrick
+  - LifeBrick
   layers:
   - Default
   - TransparentFX
