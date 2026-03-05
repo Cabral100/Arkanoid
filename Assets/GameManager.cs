@@ -83,9 +83,9 @@ public class GameManager : MonoBehaviour
         else if (sceneName == "Fase1" || sceneName == "Fase2" || sceneName == "Fase3")
         {
             GUI.Label(new Rect(Screen.width / 2 - 100, 40, 300, 60), sceneName);
-            if (GUI.Button(new Rect(50, 35, 120, 40), "RESTART"))
+            if (GUI.Button(new Rect(50, 35, 120, 40), "MENU"))
             {
-                RestartMatch();
+                SceneManager.LoadScene("SampleScene");
             }
         }
     }
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
             if(Player1Lifes < 1){
                 EndGame();
             }
-            if (gos.Length == 0)
+            if (gos.Length <= 1)
             {
                 if (scene.name == "Fase1")
                 {
