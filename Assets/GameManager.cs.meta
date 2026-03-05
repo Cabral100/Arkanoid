@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7d9b63de8eeec674ebee16e31217c7cd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - perderVidaSom: {fileID: 8300000, guid: f71848ccc49e5bb4c8444dbc6be4cd11, type: 3}
+  - PowerUpSound: {fileID: 8300000, guid: 0954f796dcf1b74498e9130983017c8f, type: 3}
+  - layout: {fileID: 11400000, guid: 4984183257f66674e8e4fa5d5663e057, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
