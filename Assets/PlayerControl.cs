@@ -47,7 +47,7 @@ public class PlayerControl : MonoBehaviour
         }
         Vector3 pos = transform.position;
 
-        pos.x = Mathf.Clamp(pos.x, -10.6f, 10.6f);
+        pos.x = Mathf.Clamp(pos.x, -15.2f, 15.2f);
         pos.y = Mathf.Clamp(pos.y, -4f, -4f);
 
         transform.position = pos;

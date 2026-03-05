@@ -9,12 +9,11 @@ public class BallControl : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        GoBall(rb2d);
     }
 
     public void GoBall(Rigidbody2D rb2d)
     {
-        rb2d.linearVelocity = new Vector2(0f, -speed);
+        rb2d.linearVelocity = new Vector2(0f, speed);
     }
     
     void OnCollisionEnter2D (Collision2D coll) {
@@ -56,7 +55,7 @@ public class BallControl : MonoBehaviour
 
     void ResetBall(){
         rb2d.linearVelocity = Vector2.zero;
-        transform.position = Vector2.zero;
+        transform.position = new Vector2(0, -3f);
     }
 
     // Reinicializa o jogo
@@ -77,7 +76,6 @@ public class BallControl : MonoBehaviour
             }else if (GameManager.Balls == 1)
             {
                 ResetBall();
-                GoBall(rb2d);
             }
         }
     }

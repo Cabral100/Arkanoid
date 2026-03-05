@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         // ================= DESENVOLVEDORES =================
         else if (sceneName == "Desenvolvedores")
         {
-            GUI.Label(new Rect(Screen.width / 2 - 100, 40, 300, 60), "DESENVOLVEDORES");
+            GUI.Label(new Rect(Screen.width / 2 - 250, 40, 500, 60), "DESENVOLVEDORES");
             GUI.Label(
                 new Rect(Screen.width / 2 - 300, 120, 600, 300),
                 "Pedro Henrique Ferreira Valim\n" +
@@ -73,19 +73,23 @@ public class GameManager : MonoBehaviour
                 infoStyle
             );
 
-            if (GUI.Button(new Rect(Screen.width / 2 - 75, 350, 200, 50), "VOLTAR"))
+            if (GUI.Button(new Rect(Screen.width / 2 - 75, 300, 200, 50), "VOLTAR"))
             {
                 SceneManager.LoadScene("SampleScene");
             }
         }
 
         // ================= FASES =================
-        else if (sceneName == "Fase1" || sceneName == "Fase2" || sceneName == "Fase3")
+        else if (sceneName == "Fase1" || sceneName == "Fase2" || sceneName == "Fase3" || sceneName == "FinalScene")
         {
             GUI.Label(new Rect(Screen.width / 2 - 100, 40, 300, 60), sceneName);
             if (GUI.Button(new Rect(50, 35, 120, 40), "MENU"))
             {
                 SceneManager.LoadScene("SampleScene");
+            }
+            if (GUI.Button(new Rect(1000, 300   , 120, 40), "LANÇAR"))
+            {
+                LancarBola();
             }
         }
     }
@@ -119,14 +123,17 @@ public class GameManager : MonoBehaviour
                 if (scene.name == "Fase1")
                 {
                     SceneManager.LoadScene("Fase2");
+                    Balls = 1;
                 }
                 else if (scene.name == "Fase2")
                 {
                     SceneManager.LoadScene("Fase3");
+                    Balls = 1;
                 }
                 else if (scene.name == "Fase3")
                 {
-                    SceneManager.LoadScene("SampleScene");
+                    SceneManager.LoadScene("FinalScene");
+                    Balls = 1;
                 }
             }
         }
@@ -146,5 +153,13 @@ public class GameManager : MonoBehaviour
             source.PlayOneShot(FindObjectOfType<GameManager>().perderVidaSom);
             Player1Lifes--;
         }
+    }
+
+    public void LancarBola()
+    {
+        GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+
+        ball.GetComponent<BallControl>().GoBall(rb);
     }
 }
